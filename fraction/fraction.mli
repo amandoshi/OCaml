@@ -2,11 +2,11 @@
     If p/q < 0, then p < 0. *)
 type t
 
-(** [make n d] makes a fraction n/d = p/q, where p/q is the simplified fraction.
-    [None] is returned if d == 0. *)
+(** [make n d] makes a fraction p/q, where p/q is the simplified fraction of [n]/[d].
+    None is returned if [d] = 0. *)
 val make : int -> int -> t option
 
-(** [make_exn n d] is similar to [make n d], except an exception is raised if d = 0. *)
+(** [make_exn n d] is similar to [make n d], except an exception is raised if [d] = 0. *)
 val make_exn : int -> int -> t
 
 (** Utility functions. *)

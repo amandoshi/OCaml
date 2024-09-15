@@ -2,23 +2,27 @@ open Base
 
 type t = int * int
 
+(** Returns the greatest common denominator of [a] and [b]. *)
 let rec gcd a b =
   if a = 0 then b
   else if b = 0 then a
   else gcd (b % a) a
 
-let sign x =
-  if x < 0 then -1 else 1
+(** Returns -1 if [x] < 0, otherwise 1. *)
+let sign x = if x < 0 then -1 else 1
 
+(** Returns the absolute value of [x]. *)
 let abs x = x * sign x
 
+(** Computes the gcd on absolute value of [a] and absolute value of [b]. *)
 let abs_gcd a b = gcd (abs a) (abs b)
 
+(** Simplifies the fraction [n]/[d]. *)
 let simplify n d =
   if d = 0 then assert false
   else
-    let divisor = abs_gcd n d in
-    (abs n / divisor * sign n * sign d, abs d / divisor)
+    let divisor = abs_gcd n d * sign d in
+    (n / divisor, d / divisor)
 
 let make n d =
   if d = 0 then None
